@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { TEditorBlock } from '../../../../editor/core';
 
@@ -12,9 +12,8 @@ type Props = {
 };
 export default function AddBlockButton({ onSelect, placeholder }: Props) {
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);
-  const [buttonElement, setButtonElement] = useState<HTMLElement | null>(null);
-
-  const handleButtonClick = (ev: React.MouseEvent<HTMLElement>) => {
+  const buttonElementRef = useRef<HTMLElement | null>(null);
+const handleButtonClick = (ev: React.MouseEvent<HTMLElement>) => {
     setMenuAnchorEl(ev.currentTarget);
   };
 
@@ -23,8 +22,9 @@ export default function AddBlockButton({ onSelect, placeholder }: Props) {
       return <PlaceholderButton onClick={handleButtonClick} />;
     } else {
       return (
-        <DividerButton
+        <DividerButton   
           buttonElement={buttonElement}
+
           onClick={handleButtonClick}
         />
       );
@@ -33,7 +33,12 @@ export default function AddBlockButton({ onSelect, placeholder }: Props) {
 
   return (
     <>
-      <div ref={setButtonElement} style={{ position: 'relative' }}>
+      <div
+        ref={(el) => {
+          buttonElementRef.current = el;
+        }}
+        style={{ position: 'relative' }}
+      >
         {renderButton()}
       </div>
       <BlocksMenu
