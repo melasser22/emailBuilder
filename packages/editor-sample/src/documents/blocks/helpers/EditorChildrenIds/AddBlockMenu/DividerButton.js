@@ -41,7 +41,7 @@ export default function DividerButton({ buttonElement, onClick }) {
                 },
             }, onClick: (ev) => {
                 ev.stopPropagation();
-                onClick();
+                onClick(ev);
             } },
             React.createElement(AddOutlined, { fontSize: "small" }))));
 }

@@ -14,15 +14,20 @@ export default function AddBlockButton({ onSelect, placeholder }: Props) {
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);
   const [buttonElement, setButtonElement] = useState<HTMLElement | null>(null);
 
-  const handleButtonClick = () => {
-    setMenuAnchorEl(buttonElement);
+  const handleButtonClick = (ev: React.MouseEvent<HTMLElement>) => {
+    setMenuAnchorEl(ev.currentTarget);
   };
 
   const renderButton = () => {
     if (placeholder) {
       return <PlaceholderButton onClick={handleButtonClick} />;
     } else {
-      return <DividerButton buttonElement={buttonElement} onClick={handleButtonClick} />;
+      return (
+        <DividerButton
+          buttonElement={buttonElement}
+          onClick={handleButtonClick}
+        />
+      );
     }
   };
 
@@ -31,7 +36,11 @@ export default function AddBlockButton({ onSelect, placeholder }: Props) {
       <div ref={setButtonElement} style={{ position: 'relative' }}>
         {renderButton()}
       </div>
-      <BlocksMenu anchorEl={menuAnchorEl} setAnchorEl={setMenuAnchorEl} onSelect={onSelect} />
+      <BlocksMenu
+        anchorEl={menuAnchorEl}
+        setAnchorEl={setMenuAnchorEl}
+        onSelect={onSelect}
+      />
     </>
   );
 }

@@ -5,7 +5,7 @@ import { Fade, IconButton } from '@mui/material';
 
 type Props = {
   buttonElement: HTMLElement | null;
-  onClick: () => void;
+  onClick: (ev: React.MouseEvent<HTMLElement>) => void;
 };
 export default function DividerButton({ buttonElement, onClick }: Props) {
   const [visible, setVisible] = useState(false);
@@ -54,7 +54,7 @@ export default function DividerButton({ buttonElement, onClick }: Props) {
         }}
         onClick={(ev) => {
           ev.stopPropagation();
-          onClick();
+          onClick(ev);
         }}
       >
         <AddOutlined fontSize="small" />

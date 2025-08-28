@@ -5,15 +5,15 @@ import PlaceholderButton from './PlaceholderButton';
 export default function AddBlockButton({ onSelect, placeholder }) {
     const [menuAnchorEl, setMenuAnchorEl] = useState(null);
     const [buttonElement, setButtonElement] = useState(null);
-    const handleButtonClick = () => {
-        setMenuAnchorEl(buttonElement);
+    const handleButtonClick = (ev) => {
+        setMenuAnchorEl(ev.currentTarget);
     };
     const renderButton = () => {
         if (placeholder) {
             return React.createElement(PlaceholderButton, { onClick: handleButtonClick });
         }
         else {
-            return React.createElement(DividerButton, { buttonElement: buttonElement, onClick: handleButtonClick });
+            return (React.createElement(DividerButton, { buttonElement: buttonElement, onClick: handleButtonClick }));
         }
     };
     return (React.createElement(React.Fragment, null,
