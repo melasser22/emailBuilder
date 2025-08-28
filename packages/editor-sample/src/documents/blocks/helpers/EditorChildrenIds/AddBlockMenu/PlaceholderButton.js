@@ -4,7 +4,7 @@ import { ButtonBase } from '@mui/material';
 export default function PlaceholderButton({ onClick }) {
     return (React.createElement(ButtonBase, { onClick: (ev) => {
             ev.stopPropagation();
-            onClick();
+            onClick(ev);
         }, sx: {
             display: 'flex',
             alignContent: 'center',
