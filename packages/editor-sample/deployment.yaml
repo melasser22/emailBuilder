@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ne-email-builder-js
+  namespace: ns-saas-sbox-ne
+  labels:
+    app: ne-email-builder-js
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ne-email-builder-js
+  template:
+    metadata:
+      labels:
+        app: ne-email-builder-js
+    spec:
+      containers:
+        - name: ne-email-builder-js
+          image: me-central2-docker.pkg.dev/prj-saas-pds-sbox-svc-1/artifact-saas-sbox-ne/ne-email-builder-js:1.1-1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m" # 0.1 CPU core
+              memory: "256Mi" # 0.25 GB RAM
+            limits:
+              cpu: "1000m" # 1 CPU core
+              memory: "1Gi" # 1 GB RAM
+
