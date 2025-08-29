@@ -4,14 +4,14 @@ import { AddOutlined } from '@mui/icons-material';
 import { ButtonBase } from '@mui/material';
 
 type Props = {
-  onClick: () => void;
+  onClick: (ev: React.MouseEvent<HTMLElement>) => void;
 };
 export default function PlaceholderButton({ onClick }: Props) {
   return (
     <ButtonBase
       onClick={(ev) => {
         ev.stopPropagation();
-        onClick();
+        onClick(ev);
       }}
       sx={{
         display: 'flex',
