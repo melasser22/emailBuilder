@@ -10,18 +10,18 @@ type Props = {
   placeholder?: boolean;
   onSelect: (block: TEditorBlock) => void;
 };
-export default function AddBlockButton({ onSelect, placeholder }: Props) {
-  const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);const buttonRef = useRef<HTMLElement | null>(null);
+export default function AddBlockButton({ onSelect, placeholder }: Props) {const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);
+  const buttonRef = useRef<HTMLElement | null>(null);
 
   const handleButtonClick = (ev: React.MouseEvent<HTMLElement>) => {
-    setMenuAnchorEl(buttonRef.current)
+    setMenuAnchorEl(ev.currentTarget as HTMLElement);
   };
 
   const renderButton = () => {
     if (placeholder) {
       return <PlaceholderButton onClick={handleButtonClick} />;
-    } else {
-      return ( <DividerButton
+    } else {return (
+        <DividerButton
           buttonElement={buttonRef.current}
           onClick={handleButtonClick}
         />
@@ -29,9 +29,8 @@ export default function AddBlockButton({ onSelect, placeholder }: Props) {
     }
   };
 
-  return (
-    <>      <div ref={buttonRef} style={{ position: 'relative' }}>
-
+  return ( <>
+      <div ref={buttonRef} style={{ position: 'relative' }}>
         {renderButton()}
       </div>
       <BlocksMenu
