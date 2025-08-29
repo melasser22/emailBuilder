@@ -3,7 +3,7 @@ import BlocksMenu from './BlocksMenu';
 import DividerButton from './DividerButton';
 import PlaceholderButton from './PlaceholderButton';
 export default function AddBlockButton({ onSelect, placeholder }) {
-    const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
     const buttonRef = useRef(null);
     const handleButtonClick = (ev) => {
         setMenuAnchorEl(ev.currentTarget);
@@ -11,8 +11,7 @@ export default function AddBlockButton({ onSelect, placeholder }) {
     const renderButton = () => {
         if (placeholder) {
             return React.createElement(PlaceholderButton, { onClick: handleButtonClick });
-        }
-        else {
+        }else {
             return (React.createElement(DividerButton, { buttonElement: buttonRef.current, onClick: handleButtonClick }));
         }
     };
